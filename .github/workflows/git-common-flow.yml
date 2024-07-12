@@ -26,22 +26,22 @@ jobs:
           distribution: 'adopt'
 
   build:
-    uses: sugar-cane-pipeline/.github/workflows/build/gradle-build.yml@main
+    uses: .github/workflows/build/gradle-build.yml@main
     with:
       job: build
     steps:
       run: java --version
 
   test:
-    uses: sugar-cane-pipeline/.github/workflows/test/gradle-test.yml@main
+    uses: .github/workflows/test/gradle-test.yml@main
     with:
       job: test
 
   package:
-    uses: sugar-cane-pipeline/.github/workflows/packaging/docker-packaging@main
+    uses: .github/workflows/packaging/docker-packaging@main
     with:
       job: package
 
   deploy:
     if: github.ref == 'refs/heads/main'
-    uses: sugar-cane-pipeline/.github/workflows/deploy/ecr-deploy.yml@main
+    uses: .github/workflows/deploy/ecr-deploy.yml@main
