@@ -27,10 +27,12 @@ jobs:
 
   build:
     steps:
-      uses: ./.github/workflows/gradle-build.yml
-      with:
-        job: build
-      run: java --version
+      - name: Build
+        uses: ./.github/workflows/gradle-build.yml
+        with:
+          job: build
+      - run: java --version
+
 
   test:
     uses: ./.github/workflows/gradle-test.yml
