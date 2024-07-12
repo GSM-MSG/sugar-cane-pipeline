@@ -1,6 +1,8 @@
 name: Create application yml
 on: workflow_call
 
+env: 
+  APPLICATION_NAME: ${{ inputs.application_name }}
 
 jobs:
   check-and-create-application-yml:
@@ -18,7 +20,7 @@ jobs:
     - name: Create application.yml if it does not exist
       if: steps.check_file.outputs.files_exists == 'false'
       run: |
-        touch ./sms-APPLICATION_NAME/src/main/resources/application.yml
+        touch ./$APPLICATION_NAME/src/main/resources/application.yml
         echo "${{ secrets.BACKEND_ENV }}" > ./$APPLICATION_NAME/src/main/resources/application.yml
       shell: bash
       
