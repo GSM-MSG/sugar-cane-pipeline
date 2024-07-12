@@ -24,24 +24,24 @@ jobs:
         with:
           java-version: '18'
           distribution: 'adopt'
-          
+
   build:
-    uses: devops/pipeline/.github/workflows/build/gradle-build.yml@main
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/build/gradle-build.yml@main
     with:
       job: build
     steps:
       run: java --version
 
   test:
-    uses: devops/pipeline/.github/workflows/test/gradle-test.yml@main
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/test/gradle-test.yml@main
     with:
       job: test
 
   package:
-    uses: devops/pipeline/.github/workflows/packaging/docker-packaging@main
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/packaging/docker-packaging@main
     with:
       job: package
 
   deploy:
     if: github.ref == 'refs/heads/main'
-    uses: devops/pipeline/.github/workflows/deploy/ecr-deploy.yml@main
+    uses: GSM-MSG/sugar-cane-pipeline/.github/workflows/deploy/ecr-deploy.yml@main
