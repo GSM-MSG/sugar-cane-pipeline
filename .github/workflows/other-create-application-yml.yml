@@ -12,6 +12,10 @@ jobs:
     env: 
       APPLICATION_NAME: ${{ inputs.application_name }}
     steps:
+    - name: test
+      run: |
+        echo "${{ inputs.application_name }}"
+        echo "${{ APPLICATION_NAME }}"
     - name: Checkout code
       uses: actions/checkout@v2
 
