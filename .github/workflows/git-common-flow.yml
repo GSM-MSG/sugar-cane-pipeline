@@ -38,17 +38,25 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
-    uses: ./.github/workflows/gradle-test.yml
-    with:
-      job: test
+    steps:
+      - name: test
+        uses: ./.github/workflows/gradle-test.yml
+        with:
+          job: test
 
   package:
     runs-on: ubuntu-latest
-    uses: ./.github/workflows/docker-packaging.yml
-    with:
-      job: package
+    steps:
+      - name: packaing
+        uses: ./.github/workflows/docker-packaging.yml
+        with:
+          job: package
 
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    uses: ./.github/workflows/ecr-deploy.yml
+    steps:
+      - name: deployment
+        if: github.ref == 'refs/heads/main'
+        uses: ./.github/workflows/ecr-deploy.yml
+        with:
+          job: deploy
