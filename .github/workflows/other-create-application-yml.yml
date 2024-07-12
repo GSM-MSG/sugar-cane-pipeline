@@ -15,7 +15,8 @@ jobs:
     - name: test
       run: |
         echo "${{ inputs.application_name }}"
-        echo "${{ APPLICATION_NAME }}"
+        echo "${{ env.APPLICATION_NAME }}"
+
     - name: Checkout code
       uses: actions/checkout@v2
 
