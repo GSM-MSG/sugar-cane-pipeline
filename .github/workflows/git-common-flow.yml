@@ -11,7 +11,7 @@ on:
       - main
       - develop
 
-defaults: &defaults
+defaults: 
   run:
     shell: bash
 
