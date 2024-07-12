@@ -1,8 +1,6 @@
 name: Create application yml
 on: workflow_call
 
-env: 
-  APPLICATION_NAME: ${{ inputs.application_name }}
 
 jobs:
   check-and-create-application-yml:
