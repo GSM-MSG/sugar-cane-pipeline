@@ -8,7 +8,7 @@ on:
 
 
 env: 
-  APPLICATION_NAME: ${{ inputs.username }}
+  APPLICATION_NAME: ${{ inputs.application_name }}
 
 
 jobs:
