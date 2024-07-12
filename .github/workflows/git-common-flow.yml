@@ -13,11 +13,11 @@ on:
 defaults:
   run:
     shell: bash
+  runs-on: ubuntu-latest
 
 
 jobs:
   setup-java:
-    runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 18
         uses: actions/setup-java@v3
