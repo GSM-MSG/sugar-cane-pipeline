@@ -26,10 +26,10 @@ jobs:
           distribution: 'adopt'
 
   build:
-    uses: ./.github/workflows/gradle-build.yml
-    with:
-      job: build
     steps:
+      uses: ./.github/workflows/gradle-build.yml
+      with:
+        job: build
       run: java --version
 
   test:
