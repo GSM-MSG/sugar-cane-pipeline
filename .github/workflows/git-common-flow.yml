@@ -26,22 +26,22 @@ jobs:
           distribution: 'adopt'
 
   build:
-    uses: .github/workflows/gradle-build.yml@main
+    uses: ./.github/workflows/gradle-build.yml@main
     with:
       job: build
     steps:
       run: java --version
 
   test:
-    uses: .github/workflows/gradle-test.yml@main
+    uses: ./.github/workflows/gradle-test.yml@main
     with:
       job: test
 
   package:
-    uses: .github/workflows/docker-packaging@main
+    uses: ./.github/workflows/docker-packaging@main
     with:
       job: package
 
   deploy:
     if: github.ref == 'refs/heads/main'
-    uses: .github/workflows/ecr-deploy.yml@main
+    uses: ./.github/workflows/ecr-deploy.yml@main
