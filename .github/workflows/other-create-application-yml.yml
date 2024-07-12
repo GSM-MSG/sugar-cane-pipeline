@@ -6,14 +6,11 @@ on:
         required: true
         type: string
 
-
-env: 
-  APPLICATION_NAME: ${{ inputs.application_name }}
-
-
 jobs:
   check-and-create-application-yml:
     runs-on: ubuntu-latest
+    env: 
+      APPLICATION_NAME: ${{ inputs.application_name }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -22,16 +19,16 @@ jobs:
       id: check_file
       uses: andstor/file-existence-action@v3
       with:
-        files: "./$APPLICATION_NAME/src/main/resources/application.yml"
+        files: "./${{ env.APPLICATION_NAME }}/src/main/resources/application.yml"
 
     - name: Create application.yml if it does not exist
       if: steps.check_file.outputs.files_exists == 'false'
       run: |
-        touch ./$APPLICATION_NAME/src/main/resources/application.yml
-        echo "${{ secrets.BACKEND_ENV }}" > ./$APPLICATION_NAME/src/main/resources/application.yml
+        touch ./${{ env.APPLICATION_NAME }}/src/main/resources/application.yml
+        echo "${{ secrets.BACKEND_ENV }}" > ./${{ env.APPLICATION_NAME }}/src/main/resources/application.yml
       shell: bash
       
     - name: Perform action if application.yml exists
       if: steps.check_file.outputs.files_exists == 'true'
       run: |
-        echo "${{ secrets.BACKEND_ENV }}" > ./$APPLICATION_NAME/src/main/resources/application.yml
+        echo "${{ secrets.BACKEND_ENV }}" > ./${{ env.APPLICATION_NAME }}/src/main/resources/application.yml
