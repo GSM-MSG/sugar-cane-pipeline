@@ -1,14 +1,14 @@
 name: Create application yml
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       application_name:
-        description: 'The name of the application'
         required: true
+        type: string
 
 
 env: 
-  APPLICATION_NAME: ${{ inputs.application_name }}
+  APPLICATION_NAME: ${{ inputs.username }}
 
 
 jobs:
