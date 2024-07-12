@@ -14,12 +14,11 @@ on:
 defaults: &defaults
   run:
     shell: bash
-  runs-on: ubuntu-latest
 
 
 jobs:
   setup-java:
-    <<: *defaults
+    runs-on: ubuntu-latest
     steps:
       - name: Set up JDK 18
         uses: actions/setup-java@v3
@@ -28,7 +27,7 @@ jobs:
           distribution: 'adopt'
 
   build:
-    <<: *defaults
+    runs-on: ubuntu-latest
     steps:
       - name: Build
         uses: ./.github/workflows/gradle-build.yml
@@ -38,18 +37,18 @@ jobs:
 
 
   test:
-    <<: *defaults
+    runs-on: ubuntu-latest
     uses: ./.github/workflows/gradle-test.yml
     with:
       job: test
 
   package:
-    <<: *defaults
+    runs-on: ubuntu-latest
     uses: ./.github/workflows/docker-packaging.yml
     with:
       job: package
 
   deploy:
-    <<: *defaults
+    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/ecr-deploy.yml
