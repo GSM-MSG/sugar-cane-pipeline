@@ -1,5 +1,5 @@
 name: Create application yml
-on: workflow_call
+on: 
   workflow_dispatch:
     inputs:
       application_name:
