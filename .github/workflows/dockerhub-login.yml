@@ -1,0 +1,18 @@
+name: DockerHub Login
+
+on:
+  workflow_call:
+
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+     - name: DockerHub-Login
+       uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+       with:
+         username: ${{ env.DOCKER_USERNAME }}
+         password: ${{ env.DOCKER_PASSWORD }}
